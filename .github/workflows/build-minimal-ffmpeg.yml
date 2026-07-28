@@ -1,0 +1,155 @@
+name: Build minimal FFmpeg for Sound Explorer Hub
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/build-minimal-ffmpeg.yml"
+      - "FFMPEG_BUILD.md"
+
+permissions:
+  contents: read
+
+env:
+  FFMPEG_COMMIT: 2aefd64d4840a8555016a59dd7ac826974a307fc
+  FFMPEG_VERSION_LABEL: 7.1.5-seh1
+
+jobs:
+  build-windows-x64:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out build instructions
+        uses: actions/checkout@v4
+
+      - name: Install cross compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes \
+            gcc-mingw-w64-x86-64 \
+            make \
+            nasm \
+            pkg-config \
+            xz-utils \
+            zip
+
+      - name: Fetch exact FFmpeg source
+        run: |
+          git clone --filter=blob:none https://github.com/FFmpeg/FFmpeg.git ffmpeg-source
+          git -C ffmpeg-source checkout --detach "${FFMPEG_COMMIT}"
+          test "$(git -C ffmpeg-source rev-parse HEAD)" = "${FFMPEG_COMMIT}"
+
+      - name: Configure LGPL shared build
+        working-directory: ffmpeg-source
+        run: |
+          ./configure \
+            --prefix="${GITHUB_WORKSPACE}/install" \
+            --pkg-config=false \
+            --cross-prefix=x86_64-w64-mingw32- \
+            --arch=x86_64 \
+            --target-os=mingw32 \
+            --enable-shared \
+            --disable-static \
+            --disable-debug \
+            --disable-doc \
+            --disable-ffplay \
+            --disable-ffprobe \
+            --disable-network \
+            --disable-autodetect \
+            --extra-version="seh-minimal-${FFMPEG_VERSION_LABEL}" \
+            --extra-ldflags="-static-libgcc"
+
+      - name: Build and install
+        working-directory: ffmpeg-source
+        run: |
+          make -j"$(nproc)"
+          make install
+
+      - name: Assemble runtime and source metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          runtime="${GITHUB_WORKSPACE}/artifact/ThirdParty/FFmpeg"
+          mkdir -p "${runtime}/bin" "${runtime}/Licenses" "${GITHUB_WORKSPACE}/source-artifact"
+
+          cp install/bin/ffmpeg.exe "${runtime}/bin/"
+          cp install/bin/avcodec-*.dll "${runtime}/bin/"
+          cp install/bin/avdevice-*.dll "${runtime}/bin/"
+          cp install/bin/avfilter-*.dll "${runtime}/bin/"
+          cp install/bin/avformat-*.dll "${runtime}/bin/"
+          cp install/bin/avutil-*.dll "${runtime}/bin/"
+          cp install/bin/swresample-*.dll "${runtime}/bin/"
+          cp install/bin/swscale-*.dll "${runtime}/bin/"
+
+          cp ffmpeg-source/COPYING.LGPLv2.1 "${runtime}/Licenses/"
+          cp ffmpeg-source/COPYING.LGPLv3 "${runtime}/Licenses/"
+          cp ffmpeg-source/COPYING.GPLv2 "${runtime}/Licenses/"
+          cp ffmpeg-source/COPYING.GPLv3 "${runtime}/Licenses/"
+          cp ffmpeg-source/LICENSE.md "${runtime}/Licenses/"
+
+          git -C ffmpeg-source archive \
+            --format=tar \
+            --prefix="FFmpeg-${FFMPEG_COMMIT}/" \
+            "${FFMPEG_COMMIT}" |
+            xz -T0 > "${GITHUB_WORKSPACE}/source-artifact/FFmpeg-${FFMPEG_COMMIT}.tar.xz"
+
+          {
+            echo "Sound Explorer Hub minimal FFmpeg build"
+            echo "FFmpeg commit: ${FFMPEG_COMMIT}"
+            echo "Workflow repository: ${GITHUB_REPOSITORY}"
+            echo "Workflow commit: ${GITHUB_SHA}"
+            echo "Workflow run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo
+            echo "Compiler:"
+            x86_64-w64-mingw32-gcc --version
+            echo
+            echo "Configure command:"
+            echo "./configure --prefix=install --pkg-config=false --cross-prefix=x86_64-w64-mingw32- --arch=x86_64 --target-os=mingw32 --enable-shared --disable-static --disable-debug --disable-doc --disable-ffplay --disable-ffprobe --disable-network --disable-autodetect --extra-version=seh-minimal-${FFMPEG_VERSION_LABEL} --extra-ldflags=-static-libgcc"
+          } > "${runtime}/BUILD_INFO.txt"
+
+          {
+            echo "PE imports"
+            echo "=========="
+            for binary in "${runtime}"/bin/*.exe "${runtime}"/bin/*.dll; do
+              echo
+              echo "[$(basename "${binary}")]"
+              x86_64-w64-mingw32-objdump -p "${binary}" |
+                sed -n 's/^[[:space:]]*DLL Name: /  /p'
+            done
+          } > "${runtime}/PE_IMPORTS.txt"
+
+          (
+            cd "${runtime}"
+            find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+          )
+
+          cp .github/workflows/build-minimal-ffmpeg.yml "${GITHUB_WORKSPACE}/source-artifact/"
+          cp FFMPEG_BUILD.md "${GITHUB_WORKSPACE}/source-artifact/"
+          cp "${runtime}/BUILD_INFO.txt" "${GITHUB_WORKSPACE}/source-artifact/"
+          cp ffmpeg-source/ffbuild/config.log "${GITHUB_WORKSPACE}/source-artifact/"
+
+      - name: Verify prohibited configure flags are absent
+        run: |
+          if grep -E -- '--enable-(gpl|nonfree)' artifact/ThirdParty/FFmpeg/BUILD_INFO.txt; then
+            echo "Prohibited GPL/non-free configure flag detected."
+            exit 1
+          fi
+
+      - name: Upload runtime artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: seh-ffmpeg-windows-x64-lgpl-shared
+          path: artifact/ThirdParty/FFmpeg
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload exact source artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: seh-ffmpeg-corresponding-source
+          path: source-artifact
+          if-no-files-found: error
+          retention-days: 90
