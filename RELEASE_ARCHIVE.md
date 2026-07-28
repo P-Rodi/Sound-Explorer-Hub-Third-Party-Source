@@ -14,9 +14,16 @@ The archive contains:
 - complete FFmpeg 7.1.3 source corresponding to Qt Multimedia's bundled
   FFmpeg libraries;
 - source archives for the remaining Python runtime and packaging components;
-- `SOURCE_COMPONENTS.json` with upstream links and SHA-256 checksums;
+- `SOURCE_COMPONENTS.json` with upstream links, SHA-256 checksums, the
+  distributed-binary licensing basis and a separate complete-source licensing
+  summary;
 - `SHA256SUMS.txt` covering every file in the source archive.
 
 The archive intentionally contains no Sound Explorer Hub application source
 code. It exists to satisfy third-party license obligations and make the
 redistributed libraries independently auditable and rebuildable.
+
+Complete upstream archives can contain optional GPL or other per-file licensed
+source code even when those optional features were not enabled in the
+distributed binaries. The manifest and preserved FFmpeg build configuration
+make that distinction explicit.

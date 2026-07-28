@@ -11,8 +11,9 @@ It does not contain the proprietary Sound Explorer Hub application source.
 - `sources/` - upstream source archives;
 - `build-information/ffmpeg/` - the exact FFmpeg build recipe, configuration
   log and metadata used for the runtime shipped with the application;
-- `SOURCE_COMPONENTS.json` - component versions, licenses, upstream locations
-  and source archive checksums;
+- `SOURCE_COMPONENTS.json` - component versions, distributed-binary licensing
+  basis, complete-source licensing summaries, upstream locations and source
+  archive checksums;
 - `SHA256SUMS.txt` - SHA-256 checksums for all files in this archive.
 
 The minimal FFmpeg build can be reproduced with the workflow and instructions
@@ -24,6 +25,12 @@ The archive contains two distinct FFmpeg source packages:
   Qt Multimedia runtime;
 - the exact `2aefd64d...` snapshot corresponds to Sound Explorer Hub's
   separate minimal command-line FFmpeg runtime.
+
+These are complete upstream source archives. They therefore contain optional
+source files under GPL or other per-file licenses even when those features were
+not enabled in the binaries distributed with Sound Explorer Hub. The exact
+minimal FFmpeg build configuration is preserved under
+`build-information/ffmpeg/`.
 
 Project source repository:
 https://github.com/P-Rodi/Sound-Explorer-Hub-Third-Party-Source

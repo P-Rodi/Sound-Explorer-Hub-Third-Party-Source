@@ -21,7 +21,10 @@ Open
 and download the archive matching the application version.
 
 The source archive maps every covered binary to its source archive, version,
-license, original URL, and SHA-256 checksum. Its structure is described in
+distributed-binary licensing basis, complete-source licensing summary,
+original URL, and SHA-256 checksum. Complete upstream source archives may
+contain optional files under licenses that were not enabled in the distributed
+binary; the manifest distinguishes those cases explicitly. Its structure is described in
 [RELEASE_ARCHIVE.md](RELEASE_ARCHIVE.md), while
 [SOURCE_COMPONENTS.json](SOURCE_COMPONENTS.json) records the exact upstream
 versions, URLs and checksums for release 1.4.41.
@@ -33,7 +36,7 @@ generating waveforms, and exporting modified audio as PCM WAV. The build:
 
 - is based on an exact FFmpeg commit;
 - uses dynamic/shared FFmpeg DLLs;
-- contains no optional GPL or non-free components;
+- enables no optional GPL or non-free components in the distributed binary;
 - uses no external codec libraries;
 - is built by the public GitHub Actions workflow in this repository.
 

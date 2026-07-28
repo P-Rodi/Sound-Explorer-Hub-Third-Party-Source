@@ -6,57 +6,68 @@
     {
       "name": "FFmpeg",
       "version": "n7.1.5-10-g2aefd64d48",
-      "license": "LGPL-2.1-or-later",
+      "distributed_binary_license": "LGPL-2.1-or-later",
+      "source_tree_licenses": "LGPL-2.1-or-later with optional GPL and other per-file licensed code not enabled in the distributed binary",
       "source_file": "FFmpeg-2aefd64d4840a8555016a59dd7ac826974a307fc.tar.xz",
       "source_url": "https://github.com/FFmpeg/FFmpeg/commit/2aefd64d4840a8555016a59dd7ac826974a307fc",
       "sha256": "c3267d8b7c535822702e6a6d862b3d4c2c9fb9fcae517f99b109947dd9b57190",
-      "notes": "Exact source used by the reproducible minimal LGPL shared build."
+      "notes": "Exact complete upstream source used by the reproducible minimal shared build. The distributed binary was configured without --enable-gpl and --enable-nonfree; optional GPL source files remain in the unmodified corresponding-source archive."
     },
     {
       "name": "PySide6 / Shiboken6",
       "version": "6.11.1",
-      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only",
+      "distributed_binary_license": "LGPL-3.0-only",
+      "source_tree_licenses": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only, with applicable third-party and per-file licenses",
       "source_file": "pyside-setup-everywhere-src-6.11.1.tar.xz",
       "source_url": "https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.11.1-src/pyside-setup-everywhere-src-6.11.1.tar.xz",
-      "sha256": "6ffd9835bb0dd2c56f061d62f1616bb1707cfc0202b80e3165d6be087f3965e2"
+      "sha256": "6ffd9835bb0dd2c56f061d62f1616bb1707cfc0202b80e3165d6be087f3965e2",
+      "notes": "Sound Explorer Hub relies on the LGPL option for the separately replaceable PySide6 runtime. See the archive's upstream licensing files for per-file terms."
     },
     {
       "name": "Qt Base",
       "version": "6.11.1",
-      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only",
+      "distributed_binary_license": "LGPL-3.0-only",
+      "source_tree_licenses": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only, with applicable third-party and per-file licenses",
       "source_file": "qtbase-everywhere-src-6.11.1.tar.xz",
       "source_url": "https://download.qt.io/official_releases/qt/6.11/6.11.1/submodules/qtbase-everywhere-src-6.11.1.tar.xz",
-      "sha256": "d9594a31228aa23ad6b531719a29b45f0f3989fe6c136d45767ea179f233c1ac"
+      "sha256": "d9594a31228aa23ad6b531719a29b45f0f3989fe6c136d45767ea179f233c1ac",
+      "notes": "Only the dynamically loaded Qt Base runtime components needed by the application are distributed. See the archive's upstream licensing files for per-file terms."
     },
     {
       "name": "Qt Multimedia",
       "version": "6.11.1",
-      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only",
+      "distributed_binary_license": "LGPL-3.0-only",
+      "source_tree_licenses": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only, with applicable third-party and per-file licenses",
       "source_file": "qtmultimedia-everywhere-src-6.11.1.tar.xz",
       "source_url": "https://download.qt.io/official_releases/qt/6.11/6.11.1/submodules/qtmultimedia-everywhere-src-6.11.1.tar.xz",
-      "sha256": "390f8e52ddee3aca5c4de7eead900c84c4fa61ff6d1f0ebea9c7543365c09b0a"
+      "sha256": "390f8e52ddee3aca5c4de7eead900c84c4fa61ff6d1f0ebea9c7543365c09b0a",
+      "notes": "Only the dynamically loaded Qt Multimedia runtime components needed by the application are distributed. See the archive's upstream licensing files for per-file terms."
     },
     {
       "name": "FFmpeg supplied with Qt Multimedia",
       "version": "7.1.3",
-      "license": "LGPL-2.1-or-later with applicable permissive per-file licenses",
+      "distributed_binary_license": "LGPL-2.1-or-later with applicable permissive per-file licenses",
+      "source_tree_licenses": "LGPL-2.1-or-later with optional GPL and other per-file licensed code",
       "source_file": "ffmpeg-7.1.3.tar.xz",
       "source_url": "https://ffmpeg.org/releases/ffmpeg-7.1.3.tar.xz",
       "sha256": "f0bf043299db9e3caacb435a712fc541fbb07df613c4b893e8b77e67baf3adbe",
-      "notes": "Complete upstream source matching the FFmpeg 7.1.3 libraries shipped in the PySide6 Qt Multimedia runtime. Qt-specific integration and build documentation are included in the Qt Multimedia 6.11.1 source archive."
+      "notes": "Complete upstream source matching the FFmpeg 7.1.3 libraries shipped in the PySide6 Qt Multimedia runtime. Optional GPL source files in the complete archive do not imply that GPL features are enabled in the distributed libraries. Qt-specific integration and build documentation are included in the Qt Multimedia 6.11.1 source archive."
     },
     {
       "name": "Qt Translations",
       "version": "6.11.1",
-      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only",
+      "distributed_binary_license": "LGPL-3.0-only",
+      "source_tree_licenses": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only, with applicable per-file licenses",
       "source_file": "qttranslations-everywhere-src-6.11.1.tar.xz",
       "source_url": "https://download.qt.io/official_releases/qt/6.11/6.11.1/submodules/qttranslations-everywhere-src-6.11.1.tar.xz",
-      "sha256": "37c02c81206594c7bb4edca85ac93e8e55a9836b70c960fde6cb0f8623ec5677"
+      "sha256": "37c02c81206594c7bb4edca85ac93e8e55a9836b70c960fde6cb0f8623ec5677",
+      "notes": "See the archive's upstream licensing files for per-file terms."
     },
     {
       "name": "CPython",
       "version": "3.10.0",
-      "license": "Python-2.0",
+      "distributed_binary_license": "Python-2.0",
+      "source_tree_licenses": "Python-2.0 with bundled third-party and per-file licenses",
       "source_file": "Python-3.10.0.tgz",
       "source_url": "https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz",
       "sha256": "c4e0cbad57c90690cb813fb4663ef670b4d0f587d8171e2c42bd4c9245bd2758"
@@ -64,7 +75,8 @@
     {
       "name": "PyInstaller",
       "version": "6.20.0",
-      "license": "GPL-2.0-or-later WITH Bootloader-exception",
+      "distributed_binary_license": "GPL-2.0-or-later WITH Bootloader-exception",
+      "source_tree_licenses": "GPL-2.0-or-later WITH Bootloader-exception, with applicable bundled third-party licenses",
       "source_file": "pyinstaller-6.20.0.tar.gz",
       "source_url": "https://pypi.org/project/pyinstaller/6.20.0/",
       "sha256": "95c5c7e03d5d61e9dfb8ef259c699cf492bb1041beb6dbe83696608cec07347a"
@@ -72,7 +84,8 @@
     {
       "name": "TinyTag",
       "version": "2.2.1",
-      "license": "MIT",
+      "distributed_binary_license": "MIT",
+      "source_tree_licenses": "MIT",
       "source_file": "tinytag-2.2.1.tar.gz",
       "source_url": "https://pypi.org/project/tinytag/2.2.1/",
       "sha256": "e6d06610ebe7cd66fd07be2d3b9495914ab32654a5e47657bb8cd44c2484523c"
@@ -80,7 +93,8 @@
     {
       "name": "imageio-ffmpeg",
       "version": "0.6.0",
-      "license": "BSD-2-Clause",
+      "distributed_binary_license": "BSD-2-Clause",
+      "source_tree_licenses": "BSD-2-Clause",
       "source_file": "imageio_ffmpeg-0.6.0.tar.gz",
       "source_url": "https://pypi.org/project/imageio-ffmpeg/0.6.0/",
       "sha256": "e2556bed8e005564a9f925bb7afa4002d82770d6b08825078b7697ab88ba1755"
