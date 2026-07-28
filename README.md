@@ -1,4 +1,4 @@
-# Sound Explorer Hub — Third-Party Source
+# Sound Explorer Hub - Third-Party Source
 
 This public repository provides corresponding source, reproducible build
 information, notices, and checksums for LGPL/GPL components distributed with
@@ -16,8 +16,15 @@ tag. For example:
 - source archive:
   `Sound_Explorer_Hub_v1.4.41_Third_Party_Source.zip`
 
+Open
+[Releases](https://github.com/P-Rodi/Sound-Explorer-Hub-Third-Party-Source/releases)
+and download the archive matching the application version.
+
 The source archive maps every covered binary to its source archive, version,
-license, original URL, and SHA-256 checksum.
+license, original URL, and SHA-256 checksum. Its structure is described in
+[RELEASE_ARCHIVE.md](RELEASE_ARCHIVE.md), while
+[SOURCE_COMPONENTS.json](SOURCE_COMPONENTS.json) records the exact upstream
+versions, URLs and checksums for release 1.4.41.
 
 ## Minimal FFmpeg build
 
