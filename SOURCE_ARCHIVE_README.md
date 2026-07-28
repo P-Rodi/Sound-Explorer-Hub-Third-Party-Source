@@ -18,6 +18,13 @@ It does not contain the proprietary Sound Explorer Hub application source.
 The minimal FFmpeg build can be reproduced with the workflow and instructions
 in `build-information/ffmpeg/`.
 
+The archive contains two distinct FFmpeg source packages:
+
+- FFmpeg 7.1.3 corresponds to the shared libraries supplied by the PySide6
+  Qt Multimedia runtime;
+- the exact `2aefd64d...` snapshot corresponds to Sound Explorer Hub's
+  separate minimal command-line FFmpeg runtime.
+
 Project source repository:
 https://github.com/P-Rodi/Sound-Explorer-Hub-Third-Party-Source
 

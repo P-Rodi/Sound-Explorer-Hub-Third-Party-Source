@@ -11,6 +11,8 @@ The archive contains:
   runtime;
 - official source archives for the LGPL Qt/PySide6 modules distributed with
   the application;
+- complete FFmpeg 7.1.3 source corresponding to Qt Multimedia's bundled
+  FFmpeg libraries;
 - source archives for the remaining Python runtime and packaging components;
 - `SOURCE_COMPONENTS.json` with upstream links and SHA-256 checksums;
 - `SHA256SUMS.txt` covering every file in the source archive.
