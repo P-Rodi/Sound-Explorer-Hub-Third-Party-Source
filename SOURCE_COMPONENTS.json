@@ -1,6 +1,6 @@
 {
   "product": "Sound Explorer Hub",
-  "release": "1.4.41",
+  "release": "1.4.42",
   "purpose": "Corresponding and reference source archives for redistributable third-party components used to build the Windows x64 portable release.",
   "components": [
     {
@@ -73,13 +73,14 @@
       "sha256": "c4e0cbad57c90690cb813fb4663ef670b4d0f587d8171e2c42bd4c9245bd2758"
     },
     {
-      "name": "PyInstaller",
-      "version": "6.20.0",
-      "distributed_binary_license": "GPL-2.0-or-later WITH Bootloader-exception",
-      "source_tree_licenses": "GPL-2.0-or-later WITH Bootloader-exception, with applicable bundled third-party licenses",
-      "source_file": "pyinstaller-6.20.0.tar.gz",
-      "source_url": "https://pypi.org/project/pyinstaller/6.20.0/",
-      "sha256": "95c5c7e03d5d61e9dfb8ef259c699cf492bb1041beb6dbe83696608cec07347a"
+      "name": "Nuitka",
+      "version": "4.1.3",
+      "distributed_binary_license": "AGPL-3.0-only WITH Nuitka-Runtime-Library-Exception-1.0",
+      "source_tree_licenses": "AGPL-3.0-only with the Nuitka Runtime Library Exception applying to generated Target Code",
+      "source_file": "nuitka-4.1.3.tar.gz",
+      "source_url": "https://pypi.org/project/Nuitka/4.1.3/",
+      "sha256": "838ff8899dc2f0b652d4fcf6c5d7466cb7ad5abcb005668ac622d1e40f4d8a8d",
+      "notes": "Nuitka is the build compiler. The distributed proprietary executable is Target Code permitted under the official Nuitka Runtime Library Exception version 1.0; the Nuitka compiler itself is not included in the portable runtime."
     },
     {
       "name": "TinyTag",

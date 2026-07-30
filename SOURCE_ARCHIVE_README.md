@@ -1,7 +1,7 @@
-# Sound Explorer Hub 1.4.41 - Third-Party Source
+# Sound Explorer Hub 1.4.42 - Third-Party Source
 
 This archive contains corresponding and reference source material for the
-third-party components distributed with the Sound Explorer Hub 1.4.41 Windows
+third-party components distributed with the Sound Explorer Hub 1.4.42 Windows
 x64 portable package.
 
 It does not contain the proprietary Sound Explorer Hub application source.
