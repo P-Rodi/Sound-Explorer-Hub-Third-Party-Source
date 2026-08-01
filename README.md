@@ -11,10 +11,10 @@ It does **not** contain the Sound Explorer Hub application source code.
 Each application release has a matching release here with the same version
 tag. For example:
 
-- application: `Sound_Explorer_Hub_v1.4.42.zip`
-- corresponding source: release tag `v1.4.42`
+- application: `Sound_Explorer_Hub_v1.4.43.zip`
+- corresponding source: release tag `v1.4.43`
 - source archive:
-  `Sound_Explorer_Hub_v1.4.42_Third_Party_Source.zip`
+  `Sound_Explorer_Hub_v1.4.43_Third_Party_Source.zip`
 
 Open
 [Releases](https://github.com/P-Rodi/Sound-Explorer-Hub-Third-Party-Source/releases)
@@ -27,7 +27,7 @@ contain optional files under licenses that were not enabled in the distributed
 binary; the manifest distinguishes those cases explicitly. Its structure is described in
 [RELEASE_ARCHIVE.md](RELEASE_ARCHIVE.md), while
 [SOURCE_COMPONENTS.json](SOURCE_COMPONENTS.json) records the exact upstream
-versions, URLs and checksums for release 1.4.42.
+versions, URLs and checksums for release 1.4.43.
 
 ## Minimal FFmpeg build
 
