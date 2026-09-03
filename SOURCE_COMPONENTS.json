@@ -1,6 +1,6 @@
 {
   "product": "Sound Explorer Hub",
-  "release": "1.4.43",
+  "release": "1.5.2",
   "purpose": "Corresponding and reference source archives for redistributable third-party components used to build the Windows x64 portable release.",
   "components": [
     {
